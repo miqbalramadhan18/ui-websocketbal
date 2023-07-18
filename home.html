@@ -30,30 +30,94 @@
     
 </head>
 <style>
+    body{
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f3f4f6;
+        font-family: 'Poppins', sans-serif;
+    }
 
+      
+      .chat-container {
+        max-width: 600px;
+        width: 100%;
+        background-color: #72afe1;
+        border-radius: 50px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-header {
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .chat-form {
+        padding: 20px;
+      }
+
+      .chat-form input[type='text'] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .chat-form button[type='submit'] {
+        width: 100%;
+        padding: 10px;
+        background-color: #6366f1;
+        color: #ffffff;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .chat-form button[type='submit']:hover {
+        background-color: #4f46e5;
+      }
+
+      .chat-messages {
+        padding: 20px;
+        overflow-y: auto;
+        max-height: 300px;
+      }
+
+      .chat-message {
+        margin-bottom: 10px;
+        display: flex;
+      }
+
+      .chat-message strong {
+        margin-right: 10px;
+        font-weight: 600;
+      }
 </style>
-            <div class="bg-yellow px-6 py-8 rounded shadow-md text-black w-full">
-            <h1 class="mb-8 text-3xl text-center">Hi There 👋 </h1>
-                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+<body>
+    <p style="text-align: center;">Mari Kita Coba !</p>
+  <div class="chat-container">
+    <div class="chat-header">Hai Chat WebSocket </div>
+    <div class="chat-form">
+      <input type="text" id="username" placeholder="Lebetken Namina Saha" />
+      <input type="text" id="message" placeholder="Mangga Bilih Bade Ngacapruk naon" />
+      <button id="send" class="w-full text-center py-3 rounded bg-blue-lighter text-black hover:bg-blue-dark focus:outline-none my-1">Send</button>
+      <div id="messages" class="bg-white px-6 py-8 scrool shadow-md text-black w-full"></div><br>
+    </div>
+    <div class="chat-messages" id="messages"></div>
+  </div>
+  
 
-                     <input type="text" 
-                        class="block border border-grey-light w-full p-3 rounded mb-4" 
-                            id="username" 
-                                placeholder="Write Your Username Here" />
-   
-            <input type="text" 
-                class="block border border-grey-light w-full p-3 rounded mb-4" 
-                id="message" 
-                placeholder="Write Your Message Here" />
-                 <br>
-                <button id="send" class="w-full text-center py-3 rounded bg-grey text-white hover:bg-green-dark focus:outline-none my-1">send</button>
-                 <div id="messages" class="bg-white px-6 py-8 scrool shadow-md text-black w-full"></div><br>
-        </div>
-            </div>
-                    </div>
     <script>
         $(function() {
-            var socket = new WebSocket("wss://websocketdap-745ca62aa859.herokuapp.com/ws?username=" + encodeURIComponent($('#username').val()));
+            var socket = new WebSocket("wss://websocketbal-1fa6b00239dc.herokuapp.com/ws?username=" + encodeURIComponent($('#username').val()));
 
             socket.onmessage = function(event) {
                 var message = JSON.parse(event.data);
